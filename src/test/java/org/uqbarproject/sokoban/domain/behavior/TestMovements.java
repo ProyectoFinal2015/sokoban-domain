@@ -23,7 +23,8 @@ public class TestMovements {
 	
 	@Before
 	public void init(){
-		tablero = new GameBoard();
+		//Creo un tablero de 5 x 6
+		tablero = new GameBoard(5,6);
 		personaje = new Sokoban();
 		personaje.setMyGameBoard(tablero);
 		personaje.setMyPosition(new Position(2,2));
@@ -35,13 +36,13 @@ public class TestMovements {
 		caja.setMyPosition(new Position(3,2));
 		caja.setMyGameBoard(tablero);
 		goal = new Place();
-		goal.setMyPosition(new Position(2,3));
+		goal.setMyPosition(new Position(2,1));
 		goal.setMyGameBoard(tablero);
 		goalOcupado = new Place();
-		goalOcupado.setMyPosition(new Position(2,0));
+		goalOcupado.setMyPosition(new Position(2,4));
 		goalOcupado.setMyGameBoard(tablero);
 		cajaEnGoal = new Box();
-		cajaEnGoal.setMyPosition(new Position(2,1));
+		cajaEnGoal.setMyPosition(new Position(2,3));
 		cajaEnGoal.setMyGameBoard(tablero);		
 	}
 	
@@ -59,15 +60,15 @@ public class TestMovements {
 	@Test
 	public void sokobanPisaElGoalYNoSeMueve(){
 		personaje.move(new MovementTop(), 1);
-		Assert.assertTrue(new Position(2,3).equals(personaje.getMyPosition()));
-		Assert.assertTrue(new Position(2,3).equals(goal.getMyPosition()));		
+		Assert.assertTrue(new Position(2,1).equals(personaje.getMyPosition()));
+		Assert.assertTrue(new Position(2,1).equals(goal.getMyPosition()));		
 	}
 	@Test
 	public void sokobanMueveCajaAlGoal(){
 		personaje.move(new MovementDown(), 1);
-		Assert.assertTrue(new Position(2,1).equals(personaje.getMyPosition()));
-		Assert.assertTrue(new Position(2,0).equals(goalOcupado.getMyPosition()));
-		Assert.assertTrue(new Position(2,0).equals(cajaEnGoal.getMyPosition()));
+		Assert.assertTrue(new Position(2,3).equals(personaje.getMyPosition()));
+		Assert.assertTrue(new Position(2,4).equals(goalOcupado.getMyPosition()));
+		Assert.assertTrue(new Position(2,4).equals(cajaEnGoal.getMyPosition()));
 	}
 	
 	@Test

@@ -5,7 +5,8 @@ import org.uqbarproject.sokoban.domain.behavior.Position;
 
 public abstract class Element {
 	private Position myPosition;
-	private GameBoard myGameBoard;
+	protected GameBoard myGameBoard;
+	private String imageName;
 
 	public void move(Movement aMovement, int places){
 		if (myGameBoard.mayIMove(this, aMovement, places))
@@ -32,6 +33,14 @@ public abstract class Element {
 	public void setMyGameBoard(GameBoard myGameBoard) {
 		this.myGameBoard = myGameBoard;
 		myGameBoard.addElement(this);
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 	
 }
